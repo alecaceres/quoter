@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { getYearsDifference } from "../helper";
+import { getYearsDifference, calculateBrand } from "../helper";
 
 const Field = styled.div`
     display: flex;
@@ -94,10 +94,10 @@ const Form = () => {
         console.log("the result is", result)
 
         // American +15%
-
         // Asian +5%
-
         // European +30%
+        result *= calculateBrand(brand)
+        console.log("result:", result)
 
         // Basic +20%
 
