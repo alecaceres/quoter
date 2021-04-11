@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Form from "./components/Form";
 import Summary from "./components/Summary";
 import Result from "./components/Result";
+import Spinner from "./components/Spinner";
 
 import styled from "@emotion/styled";
 
@@ -18,6 +19,7 @@ const FormContainer = styled.div`
 
 function App() {
   const [ summary, setSummary ] = useState({quote:0})
+  const [ loading, setLoading ] = useState(false);
   const { quote, data } = summary;
   return (
     <Container>
@@ -26,9 +28,11 @@ function App() {
       />
       <FormContainer>
         <Form
-          setSummary={setSummary}/>
+          setSummary={setSummary}
+          setLoading={setLoading}/>
+        {loading && <Spinner/>}
         {data && <Summary data={data}/>}
-        <Result quote={quote}/>
+        {!loading && <Result quote={quote}/>}
       </FormContainer>
     </Container>
   );
