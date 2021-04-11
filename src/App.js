@@ -37,7 +37,7 @@ function App() {
           setSummary={setSummary}
           setLoading={setLoading}/>
         {loading && <Spinner/>}
-        {data && <Summary data={data}/>}
+        {!loading && data.year && data.brand && data.plan && <Summary data={data}/>}
         {!loading && <Result quote={quote}/>}
       </FormContainer>
     </Container>
