@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Form from "./components/Form";
 import Summary from "./components/Summary";
+import Result from "./components/Result";
 
 import styled from "@emotion/styled";
 
@@ -16,8 +17,8 @@ const FormContainer = styled.div`
 `;
 
 function App() {
-  const [ summary, setSummary ] = useState({})
-  const {data} = summary;
+  const [ summary, setSummary ] = useState({quote:0})
+  const { quote, data } = summary;
   return (
     <Container>
       <Header
@@ -27,6 +28,7 @@ function App() {
         <Form
           setSummary={setSummary}/>
         {data && <Summary data={data}/>}
+        <Result quote={quote}/>
       </FormContainer>
     </Container>
   );
