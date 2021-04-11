@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 
 const Field = styled.div`
@@ -42,13 +42,34 @@ const Button = styled.button`
 `;
 
 const Form = () => {
+    const [data, setData] = useState({
+        brand: "",
+        year: "",
+        plan: "basic"
+    });
+
+    // extract values from state
+    const { brand, year, plan } = data;
+
+    // read data from form and set state
+    const getFormInfo = e => {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
     return (
         <form>
             <Field>
                 <Label>
                     Brand
                 </Label>
-                <Select>
+                <Select
+                    name="brand"
+                    value={brand}
+                    onChange={getFormInfo}
+                    >
                     <option value="">-- Select --</option>
                     <option value="american">American</option>
                     <option value="european">European</option>
@@ -60,7 +81,11 @@ const Form = () => {
                 <Label>
                     Year
                 </Label>
-                <Select>
+                <Select
+                    name="year"
+                    value={year}
+                    onChange={getFormInfo}
+                    >
                     <option value="">-- Select --</option>
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
@@ -83,11 +108,15 @@ const Form = () => {
                     type="radio"
                     name="plan"
                     value="basic"
+                    checked={plan === "basic"}
+                    onChange={getFormInfo}
                 /> Basic
                 <InputRadio
                     type="radio"
                     name="plan"
                     value="full"
+                    checked={plan === "full"}
+                    onChange={getFormInfo}
                 /> Full
             </Field>
 
