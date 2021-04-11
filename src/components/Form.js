@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { getYearsDifference, calculateBrand } from "../helper";
+import { getYearsDifference, calculateBrand, getPlan } from "../helper";
 
 const Field = styled.div`
     display: flex;
@@ -87,21 +87,18 @@ const Form = () => {
 
         // get years difference
         const diff = getYearsDifference(year);
-        console.log(diff)
 
         // substract 3% for every year
         result -= ( ( diff*3 ) * result ) / 100;
-        console.log("the result is", result)
 
         // American +15%
         // Asian +5%
         // European +30%
         result *= calculateBrand(brand)
-        console.log("result:", result)
 
         // Basic +20%
-
         // Full +50%
+        result *= parseFloat(getPlan(plan)).toFixed(2);
 
         // Total
     }
