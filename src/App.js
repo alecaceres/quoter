@@ -18,7 +18,13 @@ const FormContainer = styled.div`
 `;
 
 function App() {
-  const [ summary, setSummary ] = useState({quote:0})
+  const [ summary, setSummary ] = useState({
+    quote:0,
+    data: {
+      brand: "",
+      year: "",
+      plan: ""
+    }})
   const [ loading, setLoading ] = useState(false);
   const { quote, data } = summary;
   return (

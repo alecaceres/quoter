@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { getYearsDifference, calculateBrand, getPlan } from "../helper";
+import PropTypes from "prop-types";
 
 const Field = styled.div`
     display: flex;
@@ -106,7 +107,7 @@ const Form = ({ setSummary, setLoading }) => {
             setLoading(false);
             // Total
             setSummary({
-                quote: result,
+                quote: Number(result),
                 data
             });
         }, 3000)
@@ -182,3 +183,8 @@ const Form = ({ setSummary, setLoading }) => {
 }
 
 export default Form;
+
+Form.propTypes = {
+    setSummary: PropTypes.func.isRequired,
+    setLoading: PropTypes.func.isRequired
+}
